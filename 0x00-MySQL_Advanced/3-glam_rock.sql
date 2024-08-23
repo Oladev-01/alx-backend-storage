@@ -1,5 +1,5 @@
 -- getting the lifespan of a band
-SELECT band_name, IFNULL(YEAR(split), 2022) - YEAR(formed) AS lifespan
+SELECT band_name,
+IFNULL(split, 2022) - formed AS lifespan
 FROM metal_bands
-WHERE
-    style LIKE '%Glam rock'
+WHERE style LIKE '%Glam rock%';
