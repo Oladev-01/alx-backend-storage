@@ -2,7 +2,7 @@
 DROP PROCEDURE IF EXISTS AddBonus;
 DELIMITER / /
 
-CREATE PROCEDURE AddBonus(IN user_id INT, IN p_name VARCHAR(50), IN project_score INT)
+CREATE PROCEDURE AddBonus(IN user_id INT, IN p_name VARCHAR(255), IN project_score INT)
 BEGIN
     INSERT INTO projects(project_name)
     SELECT p_name
