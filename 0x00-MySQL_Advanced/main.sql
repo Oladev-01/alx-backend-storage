@@ -1,17 +1,49 @@
-DELIMITER //
+CALL AddBonus (
+    (
+        SELECT id
+        FROM users
+        WHERE
+            name = "Jeanne"
+    ),
+    "Python is cool",
+    100
+);
 
-CREATE TRIGGER update_valid_email
-BEFORE UPDATE ON users
-FOR EACH ROW
-BEGIN
-    -- Update the quantity in the items table based on the newly inserted order
-    IF OLD.email <> NEW.email THEN
-        IF OLD.valid_email = 0 THEN
-            SET NEW.valid_email = 1;
-        ELSE
-            SET NEW.valid_email = 0;
-        END IF;
-    END IF;
-END //
+CALL AddBonus (
+    (
+        SELECT id
+        FROM users
+        WHERE
+            name = "Jeanne"
+    ),
+    "Bonus project",
+    100
+);
 
-DELIMITER ;
+CALL AddBonus (
+    (
+        SELECT id
+        FROM users
+        WHERE
+            name = "Bob"
+    ),
+    "Bonus project",
+    10
+);
+
+CALL AddBonus (
+    (
+        SELECT id
+        FROM users
+        WHERE
+            name = "Jeanne"
+    ),
+    "New bonus",
+    90
+);
+
+SELECT "--";
+
+SELECT * FROM projects;
+
+SELECT * FROM corrections;
