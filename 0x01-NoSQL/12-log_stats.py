@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""show logs"""
 from pymongo import MongoClient
 
 
