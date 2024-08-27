@@ -1,0 +1,3 @@
+// listing docs
+
+db.school.find()
