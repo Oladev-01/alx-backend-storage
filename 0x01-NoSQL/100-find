@@ -1,0 +1,2 @@
+// finding from a substring
+db.school.find({ 'name': { '$regex': /^Holberton/ } })
