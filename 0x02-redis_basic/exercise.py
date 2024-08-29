@@ -6,6 +6,19 @@ from typing import Union, Callable, Optional
 import functools
 
 
+def call_history(method: Callable) -> Callable:
+    """getting call history"""
+    @functools.wraps(method)
+    def wraps(self, *args):
+        input_key = '{}:inputs'.format(method.__qualname__)
+        output = '{}:outputs'.format(method.__qualname__)
+        self._redis.rpush(input_key, str(args))
+        get_output = method(self, *args)
+        self._redis.rpush(output, str(get_output))
+        return get_output
+    return wraps
+
+
 def count_calls(method: Callable) -> Callable:
     """wrapper"""
     @functools.wraps(method)
@@ -23,7 +36,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    @count_calls
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """store method"""
         key = str(uuid.uuid4())
