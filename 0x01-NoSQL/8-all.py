@@ -9,3 +9,4 @@ def list_all(mongo_collection: collection) -> List[Dict]:
     """func to return list of documents"""
     list_doc = list(mongo_collection.find())
     return list_doc if list_doc else []
+
