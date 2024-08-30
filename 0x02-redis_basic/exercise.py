@@ -26,7 +26,7 @@ def replay(method: Callable):
     output_key = '{}:outputs'.format(method.__qualname__)
     inputs = red_inst.lrange(input_key, 0, -1)
     outputs = red_inst.lrange(output_key, 0, -1)
-    print(f'{method.__qualname__} was called {len(inputs)} times')
+    print(f'{method.__qualname__} was called {len(inputs)} times:')
     for inp, outp in zip(inputs, outputs):
         print(f"{method.__qualname__}(*{inp.decode('utf-8')}) -> {outp.decode('utf-8')}")  # noqa: E501
 
