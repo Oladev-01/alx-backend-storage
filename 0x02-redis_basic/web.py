@@ -4,13 +4,14 @@
 import requests
 import redis
 from typing import Callable
-
+import functools
 
 r = redis.Redis()
 
 
 def count_cache(method: Callable) -> Callable:
     """getting count"""
+    @functools.wraps(method)
     def wraps(url: str) -> str:
         """wrapper"""
         r.incr(f"count:{url}")
