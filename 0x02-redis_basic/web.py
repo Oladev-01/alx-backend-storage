@@ -28,5 +28,11 @@ def count_cache(method: Callable) -> Callable:
 @count_cache
 def get_page(url: str) -> str:
     """function to get page"""
-    page = requests.get(url)
+    page = requests.get(url, timeout=10)
     return page.text
+
+if __name__ == "__main__":
+    # Test URL with simulated delay
+    url = "http://slowwly.robertomurray.co.uk/delay/5000/url/http://www.example.com"
+    print(get_page(url))
+    print(f"URL accessed {r.get(f'count:{url}').decode('utf-8')} times")
